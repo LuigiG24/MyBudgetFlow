@@ -1,3 +1,4 @@
+import 'package:mybudgetflow/Pages/addInfoExpense.dart';
 import 'package:mybudgetflow/pages/Home.dart';
 import 'package:mybudgetflow/pages/Income.dart';
 import 'package:mybudgetflow/pages/Expenses.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         "/Income": (context) => Income(title: "Income"),
         "/Expenses": (context) => Expenses(title: "Expenses"),
         "/AddInfo": (context) => AddInfo(title: "AddInfo"),
+        "/addinfoexpense": (context) => AddInfoExpense(title: "AddInfoExpense"),
         },
     );
   }

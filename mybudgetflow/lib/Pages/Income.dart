@@ -60,13 +60,7 @@ class _IncomeState extends State<Income> {
   void navigateaddinfo() {
     Navigator.pushNamed(context, "/AddInfo");
   }
-
-  void navigateeditinfo(int i) {
-    Navigator.pushNamed(context, "/editInfo");
-  }
-
   
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
