@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 
 //Create a database connection
 
-class DatabaseConnection {  
+class DatabaseConnectionExpense {  
    setdB() async {
     var directory = await getApplicationDocumentsDirectory();
     var path = join(directory.path, "mybudgetflowExpense.db");

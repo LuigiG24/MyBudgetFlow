@@ -39,8 +39,14 @@ class Repository {
 
   }
 
+ 
+ 
+ totalIncome(table) async {
+    var connection = await database; 
+    return await connection.rawQuery("SELECT SUM(amount) FROM $table");
+  }
   
 
-  }
+}
 
 

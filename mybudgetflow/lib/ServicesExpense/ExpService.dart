@@ -14,7 +14,7 @@ class Expservice {
   }
   //Reading Data
   readInfo() async {
-    return await _repositoryExpense!.readData("Expense");
+    return await _repositoryExpense!.readDataExpense("Expense");
     
 }
   //Reading Data by Id
@@ -25,5 +25,10 @@ class Expservice {
   //Deleting Data
   deleteInfo(expId) async {
     return await _repositoryExpense!.deleteData( "Expense", expId);
+  }
+
+
+  totalExpense(table) async {
+    return await _repositoryExpense!.totalExpense("Expense");
   }
 }

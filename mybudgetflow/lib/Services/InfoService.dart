@@ -28,4 +28,10 @@ class Infoservice {
   deleteInfo(infoId) async {
     return await _repository!.deleteData( "Income", infoId);
   }
+
+  totalIncome(table) async {
+    return await _repository!.totalIncome("Income");
+  }
+
+
 }

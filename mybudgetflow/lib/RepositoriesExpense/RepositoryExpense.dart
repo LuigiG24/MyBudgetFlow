@@ -2,10 +2,10 @@ import 'package:sqflite/sqflite.dart';
 import 'package:mybudgetflow/RepositoriesExpense/DatabaseExpense.dart';
 
 class RepositoryExpense {
-  DatabaseConnection? _databaseConnection;
+  DatabaseConnectionExpense? _databaseConnection;
   RepositoryExpense() {
     //Initialize the database connection
-    _databaseConnection = DatabaseConnection();
+    _databaseConnection = DatabaseConnectionExpense();
   
   }
 
@@ -23,7 +23,7 @@ class RepositoryExpense {
      }
   
   //Read data from the database
-    readData(table) async {
+  readDataExpense(table) async {
       var connection = await database;
       return await connection.query(table);
     }
@@ -40,5 +40,10 @@ class RepositoryExpense {
 
   } 
 
+
+  totalExpense(table) async {
+    var connection = await database; 
+    return await connection.rawQuery("SELECT SUM(amount) FROM $table");
+  }
   
 }
