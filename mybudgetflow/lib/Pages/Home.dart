@@ -88,19 +88,49 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Total Balance: \$${_totalIncome - _totalExpense}', // Format the amount to 2 decimal places
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          children: [ Padding(padding: const EdgeInsets.all(20),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.blueAccent,
+              borderRadius: BorderRadius.circular(20),
             ),
-            // Display the total expense here
-            Text(
-              'Total Expense: \$$_totalExpense', // Format the amount to 2 decimal places
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'Total Income: \$$_totalIncome', // Format the amount to 2 decimal places
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(child:Text(
+              'Total Balance: \$${_totalIncome - _totalExpense}', 
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold ,color: Colors.white),
+            ),)]))))
+            ,
+            SizedBox(height: 50,),
+
+            Padding(padding: const EdgeInsets.all(20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Total Income: \$$_totalIncome', 
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.green),
+                      ),
+                      Text(
+                        'Total Expense: \$$_totalExpense',
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red),
+                      ),
+
+                      ],
+                  ),
+                ),
+                
+               )
             ),
           ],
         ),
