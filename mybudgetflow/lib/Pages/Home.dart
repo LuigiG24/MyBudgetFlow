@@ -21,8 +21,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    getTotalExpense();
-    getTotalIncome(); // Fetch the total expense on page load
+    setState(() {
+      getTotalExpense();
+      getTotalIncome();
+    });
+    // Fetch the total expense on page load
   }
 
   // Fetch the total expense from the ExpService
@@ -30,7 +33,8 @@ class _HomePageState extends State<HomePage> {
     var resultIncome = await _Infoservice.totalIncome("Income");
     setState(() {
       // If the result is valid, update the _totalExpense value
-      _totalIncome = resultIncome.isNotEmpty ? resultIncome[0]['SUM(amount)'] ?? 0.0 : 0.0;
+      _totalIncome =
+          resultIncome.isNotEmpty ? resultIncome[0]['SUM(amount)'] ?? 0.0 : 0.0;
     });
   }
 
@@ -38,7 +42,9 @@ class _HomePageState extends State<HomePage> {
     var resultExpense = await _Expservice.totalExpense("Expense");
     setState(() {
       // If the result is valid, update the _totalExpense value
-      _totalExpense = resultExpense.isNotEmpty ? resultExpense[0]['SUM(amount)'] ?? 0.0 : 0.0;
+      _totalExpense = resultExpense.isNotEmpty
+          ? resultExpense[0]['SUM(amount)'] ?? 0.0
+          : 0.0;
     });
   }
 
@@ -58,58 +64,54 @@ class _HomePageState extends State<HomePage> {
         title: const Text("MyBudgetFlow"),
         toolbarHeight: 100,
         titleSpacing: 125,
-        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+        titleTextStyle: const TextStyle(
+            color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
       ),
       backgroundColor: Colors.white,
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.max,
         children: [
-          ElevatedButton(
-            onPressed: _navigate,
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.blueAccent,
-              textStyle: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+          Hero(
+            tag: "btn1",
+            child: ElevatedButton(
+              onPressed: _navigate,
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blueAccent,
+                textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
+              ),
+              child: const Text('Income'),
             ),
-            child: const Text('Income'),
           ),
-          ElevatedButton(
-            onPressed: _navigate2,
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.blueAccent,
-              textStyle: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
-            ),
-            child: const Text('Expenses'),
-          ),
+          Hero(
+              tag: "btn2",
+              child: ElevatedButton(
+                onPressed: _navigate2,
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blueAccent,
+                  textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+                ),
+                child: const Text('Expenses'),
+              )),
         ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [ Padding(padding: const EdgeInsets.all(20),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.blueAccent,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Padding(
+          children: [
+            Padding(
               padding: const EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(child:Text(
-              'Total Balance: \$${_totalIncome - _totalExpense}', 
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold ,color: Colors.white),
-            ),)]))))
-            ,
-            SizedBox(height: 50,),
-
-            Padding(padding: const EdgeInsets.all(20),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.blueAccent,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Padding(
@@ -117,21 +119,54 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'Total Income: \$$_totalIncome', 
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.green),
+                      Container(
+                        child: Text(
+                          'Total Balance: \$${_totalIncome - _totalExpense}',
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
-                      Text(
-                        'Total Expense: \$$_totalExpense',
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red),
-                      ),
-
-                      ],
+                    ],
                   ),
                 ),
-                
-               )
+              ),
             ),
+            SizedBox(
+              height: 50,
+            ),
+            Padding(
+                padding: const EdgeInsets.all(20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Total Income: \$$_totalIncome',
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.green),
+                        ),
+                        Text(
+                          'Total Expense: \$$_totalExpense',
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red),
+                        ),
+                      ],
+                    ),
+                  ),
+                )),
           ],
         ),
       ),
